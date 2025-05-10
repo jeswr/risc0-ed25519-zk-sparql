@@ -7,3 +7,6 @@ edition = "2021"
 
 [dependencies]
 risc0-zkvm = { version = "^2.0.1", default-features = false, features = ['std'] }
+vc-utils = { git = "https://github.com/jeswr/vc-util.rs", rev = "4160787ff202abb7aea1686f105d2d4dfecbebd4" }
+oxrdf = { version = "0.2.4" }
+oxttl = { version = "0.1.7" }

@@ -2,3 +2,8 @@
 Cargo.lock
 methods/guest/Cargo.lock
 target/
+true/
+data/generated/
+data/queries/
+**/node_modules/
+**/.cache/
