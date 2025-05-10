@@ -3,7 +3,6 @@
 use methods::{SPARQL_ED25519_ELF, SPARQL_ED25519_ID};
 use risc0_zkvm::{default_prover, ExecutorEnv};
 use serde::{Deserialize, Serialize};
-use spareval::QueryResults;
 mod load;
 use load::load_preprocessed_dir;
 
