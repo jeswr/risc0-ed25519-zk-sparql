@@ -36,6 +36,8 @@ pub fn ed25519_verify(verify: VerifyInput) -> Result<(), String> {
         .map_err(|_| "Failed to decode base58 signature")?;
 
     // Signature verification takes approx. 200 seconds
+    // TODO: See if there is a way of doing less type castings to make this
+    // run faster
     VerifyingKey::from_bytes(&public_key_bytes[2..].try_into().unwrap())
         .unwrap()
         .verify(
