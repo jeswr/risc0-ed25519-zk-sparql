@@ -58,17 +58,8 @@ fn main() {
 
     let verify_inputs = load_preprocessed_dir("./data/generated/ed25519-preprocessed/");
 
-    let mut v2: Vec<VerifyInput> = Vec::new();
-    let mut i = 0;
-    for input in verify_inputs {
-        if i < 1 {
-            v2.push(input);
-        }
-        i += 1;
-    }
-
     let env = ExecutorEnv::builder()
-        .write(&v2)
+        .write(&verify_inputs)
         .unwrap()
         .build()
         .unwrap();
