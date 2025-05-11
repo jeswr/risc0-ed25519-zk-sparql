@@ -9,8 +9,14 @@ use serde_json::json;
 use core::Output;
 use hex;
 use borsh::BorshSerialize;
+use serde::{Serialize, Deserialize};
 use bincode;
 
+#[derive(Serialize, Deserialize)]
+struct Key {
+    id: String,
+    value: String,
+}
 
 fn main() {
     // Initialize tracing. In order to view logs, run `RUST_LOG=info cargo run`
@@ -19,6 +25,16 @@ fn main() {
         .init();
 
     let verify_raw = load_preprocessed_dir("./data/generated/ed25519-preprocessed/");
+    let mut keys: Vec<Key> = vec![];
+
+    for i in 0..verify_raw.len() {
+        let key = Key {
+            id: verify_raw[i].verification_method.id.clone(),
+            value: verify_raw[i].verification_method.public_key_multibase.clone(),
+        };
+        keys.push(key);
+    }
+
     let verify_inputs = map_preprocessed_to_verify_input(verify_raw);
     let env = ExecutorEnv::builder()
         .write(&verify_inputs)
@@ -47,39 +63,17 @@ fn main() {
     let output = receipt.journal.decode::<Output>().unwrap();
     let mut result_object = serde_json::from_str::<serde_json::Value>(&output.result_string).unwrap();
 
-    let mut buffer: Vec<u8> = Vec::new();
-    receipt.inner.serialize(&mut buffer).unwrap();
-
     // Add a 'proof' field to the result object
     result_object["proof"] = json!({
         "type": "Risc0ZKVM",
         "zkvm_id": SPARQL_ED25519_ID,
-        // "keys": verify_raw.iter().map(|key| json!({
-        //     "type": "a",
-        // })),
+        "keys": serde_json::to_value(&keys).unwrap(),
         // Hex encoding of the journal
-        "inner": hex::encode(buffer),
+        "inner": serde_json::json!(&receipt.inner),
     });
-
-//     "proof": {
-//     "type": "Ed25519Signature2020",
-//     "created": "2025-05-10T14:04:18Z",
-//     "verificationMethod": "did:example:dave#key-1",
-//     "proofPurpose": "assertionMethod",
-//     "proofValue": "zknEy6mNV2byY3hsCdPEzDiip4ZsMEwGHCzNnbkRGBEF9akB8f8ksNN5a8YFgWfAXmTU74xu1DMaKwPvPTb9nKUT"
-//   }
-    
-    println!("Output: {:?}", result_object);
 
     // Write the result to a JSON file
     let json_file = std::fs::File::create("sparql_result.json").unwrap();
     serde_json::to_writer_pretty(json_file, &result_object).unwrap();
     println!("Results written to sparql_result.json");
-
-    // TODO: Implement code for retrieving receipt journal here.
-
-    // The receipt was verified at the end of proving, but the below code is an
-    // example of how someone else could verify this receipt.
-    // let res = receipt_bytes.verify(SPARQL_ED25519_ID).expect("Receipt verification failed");
-    // println!("Receipt verification result");
 }

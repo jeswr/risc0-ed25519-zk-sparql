@@ -7,3 +7,4 @@ data/generated/
 data/queries/
 **/node_modules/
 **/.cache/
+sparql_result.json
