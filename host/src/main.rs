@@ -5,7 +5,6 @@ use risc0_zkvm::{default_prover, ExecutorEnv, Journal};
 mod load;
 use load::{load_preprocessed_dir, map_preprocessed_to_verify_input};
 use risc0_zkvm::Receipt;
-use serde_json::json;
 use core::Output;
 use serde::{Serialize, Deserialize};
 use clap::Parser;
