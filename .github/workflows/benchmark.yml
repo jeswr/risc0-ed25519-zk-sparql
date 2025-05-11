@@ -34,7 +34,7 @@ jobs:
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'cargo'
-          output-file-path: target/criterion/**/*.json
+          output-file-path: target/criterion/**/**/*.json
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           github-token: ${{ github.token }}
