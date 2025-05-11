@@ -4,14 +4,7 @@ use oxttl::NQuadsParser;
 use spareval::{QueryEvaluator, QueryResults};
 use serde::{Deserialize, Serialize};
 use spargebra::Query;
-mod verify;
-use verify::{VerifyInput, ed25519_verify};
-
-#[derive(Serialize, Deserialize, Debug)]
-struct Output {
-    pub result_string: String,
-    pub pub_keys: Vec<String>,
-}
+use core::{Output, verify::{VerifyInput, ed25519_verify}};
 
 fn main() {
     let verify_inputs: Vec<VerifyInput> = env::read();

@@ -2,17 +2,9 @@
 // The ELF is used for proving and the ID is used for verification.
 use methods::{SPARQL_ED25519_ELF, SPARQL_ED25519_ID};
 use risc0_zkvm::{default_prover, ExecutorEnv};
-use serde::{Deserialize, Serialize};
 mod load;
 use load::load_preprocessed_dir;
-
-// TODO: Move this to methods
-#[derive(Serialize, Deserialize, Debug)]
-struct Output {
-    pub result_string: String,
-    pub pub_keys: Vec<String>,
-}
-
+use core::Output;
 
 fn main() {
     // Initialize tracing. In order to view logs, run `RUST_LOG=info cargo run`
@@ -21,7 +13,6 @@ fn main() {
         .init();
 
     let verify_inputs = load_preprocessed_dir("./data/generated/ed25519-preprocessed/");
-
     let env = ExecutorEnv::builder()
         .write(&verify_inputs)
         .unwrap()
