@@ -23,7 +23,7 @@ jobs:
       - name: Install RISC Zero toolchain
         run: |
           curl -L https://risczero.com/install | bash
-          rzup install
+          $HOME/.rzup/bin/rzup install
 
       - name: Run benchmark
         run: RISC0_DEV_MODE=1 cargo bench --bench '*' -- --verbose
