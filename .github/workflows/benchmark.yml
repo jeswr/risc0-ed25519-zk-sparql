@@ -20,10 +20,18 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Cache Rust dependencies
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "benchmark-cache"
+
       - name: Install RISC Zero toolchain
         run: |
           curl -L https://risczero.com/install | bash
           /home/runner/.risc0/bin/rzup install
+
+      # - name: Setup test files
+      #   run: bash ./setup.sh
 
       - name: Run benchmark
         run: RISC0_DEV_MODE=1 cargo bench --bench '*' -- --verbose
@@ -34,7 +42,7 @@ jobs:
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'cargo'
-          output-file-path: target/criterion/**/**/*.json
+          output-file-path: target/criterion/*/new/estimates.json
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           github-token: ${{ github.token }}
