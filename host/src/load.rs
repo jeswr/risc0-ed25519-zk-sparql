@@ -3,7 +3,14 @@ use std::fs;
 use std::path::Path;
 use vc_utils::{ed25519_verify_input_from_preprocessed, VerifyInput, Ed25519Preprocessed};
 
-fn load_preprocessed(path: &str) -> VerifyInput {
+pub fn map_preprocessed_to_verify_input(preprocessed: Vec<Ed25519Preprocessed>) -> Vec<VerifyInput> {
+    preprocessed.into_iter().map(|preprocessed| {
+        ed25519_verify_input_from_preprocessed(preprocessed)
+            .expect("Failed to create verify input")
+    }).collect()
+}
+
+fn load_preprocessed(path: &str) -> Ed25519Preprocessed {
     // Read the preprocessed JSON file
     let json_str = fs::read_to_string(path)
         .expect(&format!("Failed to read {}", path));
@@ -12,14 +19,10 @@ fn load_preprocessed(path: &str) -> VerifyInput {
     let preprocessed: Ed25519Preprocessed =
         serde_json::from_str(&json_str).expect(&format!("Failed to parse preprocessed JSON from {}", path));
 
-    // Convert to VerifyInput
-    let verify_input = ed25519_verify_input_from_preprocessed(preprocessed)
-        .expect(&format!("Failed to create verify input from {}", path));
-
-    verify_input
+    preprocessed
 }
 
-fn process_dir(path: &Path, verify_inputs: &mut Vec<VerifyInput>) {
+fn process_dir(path: &Path, verify_inputs: &mut Vec<Ed25519Preprocessed>) {
     if let Ok(entries) = fs::read_dir(path) {
         for entry in entries.filter_map(Result::ok) {
             process_entry(&entry, verify_inputs);
@@ -27,7 +30,7 @@ fn process_dir(path: &Path, verify_inputs: &mut Vec<VerifyInput>) {
     }
 }
 
-fn process_entry(entry: &fs::DirEntry, verify_inputs: &mut Vec<VerifyInput>) {
+fn process_entry(entry: &fs::DirEntry, verify_inputs: &mut Vec<Ed25519Preprocessed>) {
     let path = entry.path();
     
     if path.is_dir() {
@@ -39,7 +42,7 @@ fn process_entry(entry: &fs::DirEntry, verify_inputs: &mut Vec<VerifyInput>) {
     }
 }
 
-pub fn load_preprocessed_dir(path: &str) -> Vec<VerifyInput> {
+pub fn load_preprocessed_dir(path: &str) -> Vec<Ed25519Preprocessed> {
     let mut verify_inputs = Vec::new();
     process_dir(Path::new(path), &mut verify_inputs);
 
