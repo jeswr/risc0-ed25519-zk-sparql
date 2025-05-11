@@ -24,7 +24,8 @@ jobs:
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
         with:
-          shared-key: "benchmark-cache"
+          key: benchmark-cache
+          cache-on-failure: true
 
       - name: Install RISC Zero toolchain
         run: |
