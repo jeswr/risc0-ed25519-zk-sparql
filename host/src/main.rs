@@ -7,10 +7,24 @@ use load::{load_preprocessed_dir, map_preprocessed_to_verify_input};
 use risc0_zkvm::Receipt;
 use serde_json::json;
 use core::Output;
-use hex;
-use borsh::BorshSerialize;
 use serde::{Serialize, Deserialize};
-use bincode;
+use clap::Parser;
+
+#[derive(Parser)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    /// Path to the preprocessed directory
+    #[arg(short, long, default_value = "./data/generated/ed25519-preprocessed/")]
+    path: String,
+
+    /// Path to the SPARQL query file
+    #[arg(short, long, default_value = "./query.sparql")]
+    query_file: String,
+
+    /// Path to the output JSON file
+    #[arg(short, long, default_value = "./sparql_result.json")]
+    output_file: String,
+}
 
 #[derive(Serialize, Deserialize)]
 struct Key {
@@ -24,7 +38,8 @@ fn main() {
         .with_env_filter(tracing_subscriber::filter::EnvFilter::from_default_env())
         .init();
 
-    let verify_raw = load_preprocessed_dir("./data/generated/ed25519-preprocessed/");
+    let args = Args::parse();
+    let verify_raw = load_preprocessed_dir(&args.path);
     let mut keys: Vec<Key> = vec![];
 
     for i in 0..verify_raw.len() {
@@ -35,11 +50,15 @@ fn main() {
         keys.push(key);
     }
 
+    // Read the SPARQL query from file
+    let query = std::fs::read_to_string(&args.query_file)
+        .unwrap_or_else(|_| panic!("Failed to read query file: {}", args.query_file));
+
     let verify_inputs = map_preprocessed_to_verify_input(verify_raw);
     let env = ExecutorEnv::builder()
         .write(&verify_inputs)
         .unwrap()
-        .write(&"SELECT ?s ?p ?o WHERE { ?s ?p ?o }")
+        .write(&query)
         .unwrap()
         .build()
         .unwrap();
@@ -72,8 +91,8 @@ fn main() {
         "inner": serde_json::json!(&receipt.inner),
     });
 
-    // Write the result to a JSON file
-    let json_file = std::fs::File::create("sparql_result.json").unwrap();
+    // Write the result to the specified JSON file
+    let json_file = std::fs::File::create(&args.output_file).unwrap();
     serde_json::to_writer_pretty(json_file, &result_object).unwrap();
-    println!("Results written to sparql_result.json");
+    println!("Results written to {}", args.output_file);
 }
