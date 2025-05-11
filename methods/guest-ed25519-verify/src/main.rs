@@ -1,8 +1,9 @@
 use risc0_zkvm::guest::env;
-use core::{Output, verify::{VerifyInput, ed25519_verify}, query::query, load::load_dataset};
+use core::verify::{VerifyInput, ed25519_verify};
 
 fn main() {
-    let verify_inputs: VerifyInput = env::read();
+    let input: VerifyInput = env::read();
+    let canonical_document = input.canonical_document.clone();
     ed25519_verify(input).expect("Signature verification failed");
-    env::commit(&verify_inputs.canonical_document);
+    env::commit(&canonical_document);
 }
