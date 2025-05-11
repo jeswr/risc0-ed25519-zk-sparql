@@ -32,8 +32,8 @@ jobs:
           curl -L https://risczero.com/install | bash
           /home/runner/.risc0/bin/rzup install
 
-      # - name: Setup test files
-      #   run: bash ./setup.sh
+      - name: Setup test files
+        run: bash ./setup.sh
 
       - name: Run benchmark
         run: RISC0_DEV_MODE=1 cargo bench --bench '*' -- --verbose
