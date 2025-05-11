@@ -86,7 +86,7 @@ fn prove_mode(args: &Args) {
     let prove_info = prover.prove(env, SPARQL_ED25519_ELF).unwrap();
     
     let end = std::time::Instant::now();
-    println!("Proving took {:?}", end - start);
+    // println!("Proving took {:?}", end - start);
     
     // extract the receipt.
     let receipt: Receipt = prove_info.receipt;
@@ -111,7 +111,7 @@ fn prove_mode(args: &Args) {
     // Write the result to the specified JSON file
     let json_file = std::fs::File::create(&args.output_file).unwrap();
     serde_json::to_writer_pretty(json_file, &result_object).unwrap();
-    println!("Results written to {}", args.output_file);
+    // println!("Results written to {}", args.output_file);
 }
 
 fn verify_mode(args: &Args) {
@@ -177,8 +177,8 @@ fn verify_mode(args: &Args) {
     let start = std::time::Instant::now();
     receipt.verify(SPARQL_ED25519_ID).unwrap();
     let end = std::time::Instant::now();
-    println!("Verification took {:?}", end - start);
-    println!("Verification successful!");
+    // println!("Verification took {:?}", end - start);
+    // println!("Verification successful!");
 }
 
 pub fn run(args: &Args) {

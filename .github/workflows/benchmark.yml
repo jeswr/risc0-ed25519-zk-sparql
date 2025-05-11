@@ -36,9 +36,7 @@ jobs:
         run: bash ./setup.sh
 
       - name: Run benchmark
-        run: RISC0_DEV_MODE=1 cargo bench --bench '*' -- --verbose
-        env:
-          RISC0_DEV_MODE: 1
+        run: cargo bench --bench '*' -- --verbose
 
       - name: Combine criterion results
         run: bash ./combine_criterion.sh
