@@ -14,6 +14,7 @@ jobs:
       pages: write
       issues: write
     runs-on: ubuntu-latest
+    timeout-minutes: 1440
     steps:
       - uses: actions/checkout@v4
 
@@ -38,11 +39,14 @@ jobs:
         env:
           RISC0_DEV_MODE: 1
 
+      - name: Combine criterion results
+        run: bash ./combine_criterion.sh
+
       - name: Run benchmark action
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'cargo'
-          output-file-path: target/criterion/*/new/estimates.json
+          output-file-path: combined_criterion.json
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           github-token: ${{ github.token }}
