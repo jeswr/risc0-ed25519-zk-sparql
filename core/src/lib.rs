@@ -18,7 +18,7 @@ pub mod query;
 pub mod load;
 
 // TODO: Move this to methods
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 pub struct Output {
     pub result_string: String,
     pub pub_keys: Vec<String>,
