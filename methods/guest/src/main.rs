@@ -1,11 +1,6 @@
 use risc0_zkvm::guest::env;
-use oxrdf::{Dataset, GraphName, Quad};
-use oxttl::NQuadsParser;
-use spareval::{QueryEvaluator, QueryResults};
-use serde::{Deserialize, Serialize};
 use spargebra::Query;
-use core::{Output, verify::{VerifyInput, ed25519_verify}, query::query, load::load_dataset};
-use sparesults::QueryResultsSerializer;
+use core::{Output, verify::VerifyInput, query::query, load::load_dataset};
 
 fn main() {
     let verify_inputs: Vec<VerifyInput> = env::read();
@@ -13,11 +8,11 @@ fn main() {
 
     // TODO: Make this query configurable
     let query_string: String = env::read();
-    let queryObject = Query::parse(&query_string, None).unwrap();
+    let query_object = Query::parse(&query_string, None).unwrap();
 
     // write public output to the journal
     env::commit(&Output {
-        result_string: query(dataset, queryObject),
+        result_string: query(dataset, query_object),
         query_string,
         pub_keys,
     });
