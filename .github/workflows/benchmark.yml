@@ -1,0 +1,36 @@
+name: Benchmark
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  benchmark:
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
+      pages: write
+      issues: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run benchmark
+        run: RISC0_DEV_MODE=1 cargo bench --bench '*' -- --verbose
+        env:
+          RISC0_DEV_MODE: 1
+
+      - name: Run benchmark action
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: 'cargo'
+          output-file-path: target/criterion/**/*.json
+          gh-pages-branch: gh-pages
+          benchmark-data-dir-path: dev/bench
+          github-token: ${{ github.token }}
+          auto-push: true

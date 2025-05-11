@@ -12,8 +12,6 @@ pub fn query(dataset: Dataset, query: Query) -> String {
         let serializer = QueryResultsSerializer::from(QueryResultsFormat::Json);
         let mut writer = Vec::new();
 
-
-
         let mut res = serializer
             .serialize_solutions_to_writer(&mut writer, solutions.variables().to_vec()).unwrap();
 

@@ -16,3 +16,14 @@ hex = "0.4.3"
 borsh = "1.3.0"
 bincode = "2.0.1"
 clap = { version = "4.4", features = ["derive"] }
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "proving_verifying"
+harness = false
+
+[lib]
+name = "host"
+path = "src/lib.rs"
