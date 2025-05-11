@@ -4,6 +4,7 @@ use methods::{SPARQL_ED25519_ELF, SPARQL_ED25519_ID};
 use risc0_zkvm::{default_prover, ExecutorEnv};
 mod load;
 use load::load_preprocessed_dir;
+use serde_json::json;
 use core::Output;
 
 fn main() {
@@ -15,6 +16,8 @@ fn main() {
     let verify_inputs = load_preprocessed_dir("./data/generated/ed25519-preprocessed/");
     let env = ExecutorEnv::builder()
         .write(&verify_inputs)
+        .unwrap()
+        .write(&"SELECT ?s ?p ?o WHERE { ?s ?p ?o }")
         .unwrap()
         .build()
         .unwrap();
@@ -38,7 +41,6 @@ fn main() {
 
     // For example:
     let _output: Output = receipt.journal.decode().unwrap();
-
     println!("Output: {:?}", _output);
 
     // The receipt was verified at the end of proving, but the below code is an

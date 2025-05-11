@@ -14,10 +14,13 @@
 use serde::{Deserialize, Serialize};
 
 pub mod verify;
+pub mod query;
+pub mod load;
 
 // TODO: Move this to methods
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Output {
     pub result_string: String,
     pub pub_keys: Vec<String>,
+    pub query_string: String,
 }
