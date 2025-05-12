@@ -39,11 +39,17 @@ for i, query in enumerate(queries):
     # Plot 4 credentials first (so it's in the background)
     config = "ed25519-preprocessed"
     config_label = "4 Credentials"
-    query_label = "SELECT ALL" if query == "query" else query.replace("-", " ").title()
+    query_label = "SELECT ALL" if query == "query" else "Can Drive" if query == "can-drive" else "Employment"
     prove_times = [data[env][config][query]['prove'] for env in environments]
     bar = ax1.bar(x + (i * width * 1.2), prove_times, width,
             label=f'{config_label} {query_label}', alpha=0.7)
     color = bar[0].get_facecolor()
+    
+    # Add text labels for 4 credentials
+    for j, v in enumerate(prove_times):
+        ax1.text(x[j] + (i * width * 1.2), v/2, query_label,
+                ha='center', va='center', color='white', rotation=90,
+                fontweight='bold', fontsize=16)
     
     # Plot 1 credential on top with darker color
     config = "minimal"
@@ -65,11 +71,17 @@ for i, query in enumerate(queries):
     # Plot 4 credentials first (so it's in the background)
     config = "ed25519-preprocessed"
     config_label = "4 Credentials"
-    query_label = "SELECT ALL" if query == "query" else query.replace("-", " ").title()
+    query_label = "SELECT ALL" if query == "query" else "Can Drive" if query == "can-drive" else "Employment"
     verify_times = [data[env][config][query]['verify'] for env in environments]
     bar = ax2.bar(x + (i * width * 1.2), verify_times, width,
             label=f'{config_label} {query_label}', alpha=0.7)
     color = bar[0].get_facecolor()
+    
+    # Add text labels for 4 credentials
+    for j, v in enumerate(verify_times):
+        ax2.text(x[j] + (i * width * 1.2), v/2, query_label,
+                ha='center', va='center', color='white', rotation=90,
+                fontweight='bold', fontsize=16)
     
     # Plot 1 credential on top with darker color
     config = "minimal"
