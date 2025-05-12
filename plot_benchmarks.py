@@ -26,13 +26,15 @@ width = 0.15  # Width of the bars
 for i, query in enumerate(queries):
     for j, config in enumerate(configurations):
         prove_times = [data[env][config][query]['prove'] for env in environments]
+        config_label = "1 Credential" if config == "minimal" else "4 Credentials"
+        query_label = "SELECT ALL" if query == "query" else query.replace("-", " ").title()
         ax1.bar(x + (i * width) + (j * width/2), prove_times, width/2,
-                label=f'{config}-{query}')
+                label=f'{config_label} {query_label}')
 
 ax1.set_ylabel('Time (seconds)')
 ax1.set_title('Proof Generation Times')
 ax1.set_xticks(x + width)
-ax1.set_xticklabels(environments)
+ax1.set_xticklabels([env.replace("-", " ").replace("ci", "CI").title() for env in environments])
 ax1.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 ax1.grid(True, alpha=0.3)
 
@@ -40,13 +42,15 @@ ax1.grid(True, alpha=0.3)
 for i, query in enumerate(queries):
     for j, config in enumerate(configurations):
         verify_times = [data[env][config][query]['verify'] for env in environments]
+        config_label = "1 Credential" if config == "minimal" else "4 Credentials"
+        query_label = "SELECT ALL" if query == "query" else query.replace("-", " ").title()
         ax2.bar(x + (i * width) + (j * width/2), verify_times, width/2,
-                label=f'{config}-{query}')
+                label=f'{config_label} {query_label}')
 
 ax2.set_ylabel('Time (seconds)')
 ax2.set_title('Verification Times')
 ax2.set_xticks(x + width)
-ax2.set_xticklabels(environments)
+ax2.set_xticklabels([env.replace("-", " ").replace("ci", "CI").title() for env in environments])
 ax2.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 ax2.grid(True, alpha=0.3)
 
