@@ -31,6 +31,8 @@ jobs:
           cache-on-failure: true
 
       - name: Install RISC Zero toolchain
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           curl -L https://risczero.com/install | bash
           $HOME/.risc0/bin/rzup install
