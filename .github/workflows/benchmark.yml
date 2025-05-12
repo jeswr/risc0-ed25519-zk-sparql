@@ -13,7 +13,10 @@ jobs:
       repository-projects: write
       pages: write
       issues: write
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 1440
     steps:
       - uses: actions/checkout@v4
@@ -24,13 +27,13 @@ jobs:
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
         with:
-          key: benchmark-cache
+          key: benchmark-cache-${{ matrix.os }}
           cache-on-failure: true
 
       - name: Install RISC Zero toolchain
         run: |
           curl -L https://risczero.com/install | bash
-          /home/runner/.risc0/bin/rzup install
+          $HOME/.risc0/bin/rzup install
 
       - name: Setup test files
         run: bash ./setup.sh
