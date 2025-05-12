@@ -13,9 +13,15 @@
 // limitations under the License.
 use serde::{Deserialize, Serialize};
 
-pub mod verify;
 pub mod query;
-pub mod load;
+
+#[derive(Serialize, Deserialize)]
+pub struct VerifyInput {
+    pub canonical_document: String,
+    pub canonical_proof: String,
+    pub public_key: String,
+    pub proof: String,
+}
 
 // TODO: Move this to methods
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
