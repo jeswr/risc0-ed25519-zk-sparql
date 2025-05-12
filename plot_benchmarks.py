@@ -62,8 +62,8 @@ for i, query in enumerate(queries):
 ax1.set_ylabel('Time (seconds)')
 ax1.set_title('Proof Generation Times')
 ax1.set_xticks(x + width * 1.2)  # Adjusted tick positions
-ax1.set_xticklabels([env.replace("-", " ").replace("ci", "CI").title() for env in environments])
-ax1.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+ax1.set_xticklabels([env.replace("-", " ").replace("Ci", "CI").title() for env in environments])
+ax1.legend(loc='upper right')
 ax1.grid(True, alpha=0.3)
 
 # Plot verify times
@@ -94,8 +94,8 @@ for i, query in enumerate(queries):
 ax2.set_ylabel('Time (seconds)')
 ax2.set_title('Verification Times')
 ax2.set_xticks(x + width * 1.2)  # Adjusted tick positions
-ax2.set_xticklabels([env.replace("-", " ").replace("ci", "CI").title() for env in environments])
-ax2.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+ax2.set_xticklabels([env.replace("-", " ").replace("Ci", "CI").title() for env in environments])
+ax2.legend(loc='upper right')
 ax2.grid(True, alpha=0.3)
 
 # Adjust layout and save
