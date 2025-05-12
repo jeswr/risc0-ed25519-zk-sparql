@@ -32,7 +32,7 @@ queries = ['query', 'can-drive', 'employment-status']
 
 # Set up the x-axis positions
 x = np.arange(len(environments))
-width = 0.15  # Width of the bars
+width = 0.2  # Increased width of the bars
 
 # Plot prove times
 for i, query in enumerate(queries):
@@ -41,7 +41,7 @@ for i, query in enumerate(queries):
     config_label = "4 Credentials"
     query_label = "SELECT ALL" if query == "query" else query.replace("-", " ").title()
     prove_times = [data[env][config][query]['prove'] for env in environments]
-    bar = ax1.bar(x + (i * width), prove_times, width,
+    bar = ax1.bar(x + (i * width * 1.2), prove_times, width,
             label=f'{config_label} {query_label}', alpha=0.7)
     color = bar[0].get_facecolor()
     
@@ -49,13 +49,13 @@ for i, query in enumerate(queries):
     config = "minimal"
     config_label = "1 Credential"
     prove_times = [data[env][config][query]['prove'] for env in environments]
-    ax1.bar(x + (i * width), prove_times, width,
+    ax1.bar(x + (i * width * 1.2), prove_times, width,
             label=f'{config_label} {query_label}', alpha=0.9,
             color=darken_color(color))
 
 ax1.set_ylabel('Time (seconds)')
 ax1.set_title('Proof Generation Times')
-ax1.set_xticks(x + width)
+ax1.set_xticks(x + width * 1.2)  # Adjusted tick positions
 ax1.set_xticklabels([env.replace("-", " ").replace("ci", "CI").title() for env in environments])
 ax1.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 ax1.grid(True, alpha=0.3)
@@ -67,7 +67,7 @@ for i, query in enumerate(queries):
     config_label = "4 Credentials"
     query_label = "SELECT ALL" if query == "query" else query.replace("-", " ").title()
     verify_times = [data[env][config][query]['verify'] for env in environments]
-    bar = ax2.bar(x + (i * width), verify_times, width,
+    bar = ax2.bar(x + (i * width * 1.2), verify_times, width,
             label=f'{config_label} {query_label}', alpha=0.7)
     color = bar[0].get_facecolor()
     
@@ -75,13 +75,13 @@ for i, query in enumerate(queries):
     config = "minimal"
     config_label = "1 Credential"
     verify_times = [data[env][config][query]['verify'] for env in environments]
-    ax2.bar(x + (i * width), verify_times, width,
+    ax2.bar(x + (i * width * 1.2), verify_times, width,
             label=f'{config_label} {query_label}', alpha=0.9,
             color=darken_color(color))
 
 ax2.set_ylabel('Time (seconds)')
 ax2.set_title('Verification Times')
-ax2.set_xticks(x + width)
+ax2.set_xticks(x + width * 1.2)  # Adjusted tick positions
 ax2.set_xticklabels([env.replace("-", " ").replace("ci", "CI").title() for env in environments])
 ax2.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 ax2.grid(True, alpha=0.3)
