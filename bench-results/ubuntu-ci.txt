@@ -1,0 +1,81 @@
+        PROOF GENERATION (DATA: ./minimal/) (QUERY: ./queries/query.rq)
+Starting Prove mode
+Path: ./minimal/
+Query file: ./queries/query.rq
+Output file: ./results/minimal_query_result.json
+Time taken: 1354.526816209s
+
+real	22m34.529s
+user	88m31.869s
+sys	0m5.993s
+
+        VERIFICATION (DATA: ./minimal/) (QUERY: ./queries/query.rq)
+Starting Verify mode
+Path: 
+Query file: 
+Output file: ./results/minimal_query_result.json
+Time taken: 3.212069848s
+
+real	0m3.214s
+user	0m0.536s
+sys	0m2.678s
+
+        PROOF GENERATION (DATA: ./minimal/) (QUERY: ./queries/can-drive.rq)
+real	76m34.308s
+user	301m46.305s
+sys	0m16.782s
+
+        VERIFICATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./queries/query.rq)
+Starting Verify mode
+Path: 
+Query file: 
+Output file: ./results/ed25519-preprocessed_query_result.json
+Time taken: 9.782836057s
+
+real	0m9.785s
+user	0m1.574s
+sys	0m8.211s
+
+        PROOF GENERATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./queries/can-drive.rq)
+Starting Prove mode
+Path: ./data/generated/ed25519-preprocessed/
+Query file: ./queries/can-drive.rq
+Output file: ./results/ed25519-preprocessed_can-drive_result.json
+Time taken: 4049.858719663s
+
+real	67m29.862s
+user	265m58.108s
+sys	0m14.034s
+
+        VERIFICATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./queries/can-drive.rq)
+Starting Verify mode
+Path: 
+Query file: 
+Output file: ./results/ed25519-preprocessed_can-drive_result.json
+Time taken: 8.41977162s
+
+real	0m8.422s
+user	0m1.349s
+sys	0m7.072s
+
+        PROOF GENERATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./queries/employment-status.rq)
+Starting Prove mode
+Path: ./data/generated/ed25519-preprocessed/
+Query file: ./queries/employment-status.rq
+Output file: ./results/ed25519-preprocessed_employment-status_result.json
+Time taken: 3770.120459857s
+
+real	62m50.123s
+user	247m39.828s
+sys	0m12.454s
+
+        VERIFICATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./queries/employment-status.rq)
+Starting Verify mode
+Path: 
+Query file: 
+Output file: ./results/ed25519-preprocessed_employment-status_result.json
+Time taken: 7.397730321s
+
+real	0m7.400s
+user	0m1.211s
+sys	0m6.189s
