@@ -4,7 +4,7 @@ cargo build --release
 
 for dir in ./minimal/ ./data/generated/ed25519-preprocessed/
 do
-    for query in ./data/queries/can-drive.rq ./data/queries/employment-status.rq ./query.sparql
+    for query in ./query.sparql ./data/queries/can-drive.rq ./data/queries/employment-status.rq
     do
         echo "
         PROOF GENERATION (DATA: $dir) (QUERY: $query)"
