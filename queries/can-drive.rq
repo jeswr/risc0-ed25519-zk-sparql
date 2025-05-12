@@ -1,0 +1,26 @@
+PREFIX schema: <https://schema.org/>
+PREFIX vdl: <https://w3id.org/vdl#>
+PREFIX citizenship: <https://w3id.org/citizenship#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?s ?givenName ?familyName
+WHERE {
+  ?s citizenship:employmentAuthorizationDocument ?a ;
+    citizenship:residentSince ?date ;
+    schema:birthDate ?birthDate ;
+    schema:givenName ?givenName ;
+    schema:familyName ?familyName ;
+    vdl:license ?l .
+
+  ?a citizenship:lprCategory "C09" .
+  ?l vdl:expiryDate ?expiryDate .
+
+  # Has been a resident for at least 5 years
+  FILTER( ?date < xsd:dateTime("2020-01-01T00:00:00") )
+
+  # # Is over 18
+  FILTER( ?birthDate < xsd:dateTime("2007-01-01T00:00:00") )
+
+  # # License is valid
+  FILTER( ?expiryDate > xsd:dateTime("2025-01-01T00:00:00") )
+}

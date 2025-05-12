@@ -19,20 +19,20 @@ pub enum Mode {
 #[command(author, version, about, long_about = None)]
 pub struct Args {
     /// Operation mode (prove or verify)
-    #[arg(short, long, value_enum, default_value = "prove")]
+    #[arg(short, long, value_enum)]
     pub mode: Mode,
 
+    /// Path to the output JSON file
+    #[arg(short, long)]
+    pub output_file: String,
+
     /// Path to the preprocessed directory
-    #[arg(short, long, default_value = "./data/generated/ed25519-preprocessed/")]
-    pub path: String,
+    #[arg(short, long, requires_if("mode", "Prove"))]
+    pub path: Option<String>,
 
     /// Path to the SPARQL query file
-    #[arg(short, long, default_value = "./query.sparql")]
-    pub query_file: String,
-
-    /// Path to the output JSON file
-    #[arg(short, long, default_value = "./sparql_result.json")]
-    pub output_file: String,
+    #[arg(short, long, requires_if("mode", "Prove"))]
+    pub query_file: Option<String>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -53,7 +53,10 @@ struct Proof {
 }
 
 fn prove_mode(args: &Args) {
-    let verify_raw = load_preprocessed_dir(&args.path);
+    let path = args.path.as_ref().expect("path is required in prove mode");
+    let query_file = args.query_file.as_ref().expect("query_file is required in prove mode");
+    
+    let verify_raw = load_preprocessed_dir(path);
     let mut keys: Vec<Key> = vec![];
 
     for i in 0..verify_raw.len() {
@@ -65,8 +68,8 @@ fn prove_mode(args: &Args) {
     }
 
     // Read the SPARQL query from file
-    let query = std::fs::read_to_string(&args.query_file)
-        .unwrap_or_else(|_| panic!("Failed to read query file: {}", args.query_file));
+    let query = std::fs::read_to_string(query_file)
+        .unwrap_or_else(|_| panic!("Failed to read query file: {}", query_file));
 
     let verify_inputs = map_preprocessed_to_verify_input(verify_raw);
     let env = ExecutorEnv::builder()
@@ -172,22 +175,11 @@ fn verify_mode(args: &Args) {
 }
 
 pub fn run(args: &Args) {
-    match args.mode {
-        Mode::Prove => prove_mode(args),
-        Mode::Verify => verify_mode(args),
-    }
-}
-
-#[allow(dead_code)]
-fn main() {
-    // Initialize tracing. In order to view logs, run `RUST_LOG=info cargo run`
-    tracing_subscriber::fmt()
-        .with_env_filter(tracing_subscriber::filter::EnvFilter::from_default_env())
-        .init();
-
-    let args = Args::parse();
-
     let start = std::time::Instant::now();
+    println!("Starting {:?} mode", args.mode);
+    println!("Path: {}", args.path.as_ref().unwrap_or(&String::new()));
+    println!("Query file: {}", args.query_file.as_ref().unwrap_or(&String::new()));
+    println!("Output file: {}", args.output_file);
     match args.mode {
         Mode::Prove => prove_mode(&args),
         Mode::Verify => verify_mode(&args),

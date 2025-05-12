@@ -10,3 +10,4 @@ data/queries/
 sparql_result.json
 combined_criterion.json
 minimal/
+results/

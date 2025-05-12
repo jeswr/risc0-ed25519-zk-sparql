@@ -10,8 +10,8 @@ fn args(mode: Mode, query_file: &str) -> Args {
     let workspace_root = root_dir();
     Args {
       mode: mode,
-      path: workspace_root.join("data/generated/ed25519-preprocessed/").to_string_lossy().to_string(),
-      query_file: workspace_root.join(query_file).to_string_lossy().to_string(),
+      path: Some(workspace_root.join("data/generated/ed25519-preprocessed/").to_string_lossy().to_string()),
+      query_file: Some(workspace_root.join(query_file).to_string_lossy().to_string()),
       output_file: workspace_root.join("sparql_result.json").to_string_lossy().to_string(),
   }
 }

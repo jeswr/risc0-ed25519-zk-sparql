@@ -1,0 +1,10 @@
+PREFIX schema: <https://schema.org/>
+PREFIX citizenship: <https://w3id.org/citizenship#>
+
+SELECT DISTINCT ?person ?givenName ?familyName
+WHERE {
+  ?person a citizenship:EmployablePerson ;
+    schema:givenName ?givenName ;
+    schema:familyName ?familyName .
+}
+ORDER BY ?name 
