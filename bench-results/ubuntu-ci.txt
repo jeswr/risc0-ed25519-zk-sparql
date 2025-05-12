@@ -20,7 +20,57 @@ real	0m3.214s
 user	0m0.536s
 sys	0m2.678s
 
-        PROOF GENERATION (DATA: ./minimal/) (QUERY: ./queries/can-drive.rq)
+         PROOF GENERATION (DATA: ./minimal/) (QUERY: ./queries/can-drive.rq)
+Starting Prove mode
+Path: ./minimal/
+Query file: ./queries/can-drive.rq
+Output file: ./results/minimal_can-drive_result.json
+Time taken: 1622.219169204s
+
+real	27m2.222s
+user	106m28.091s
+sys	0m5.730s
+
+        VERIFICATION (DATA: ./minimal/) (QUERY: ./queries/can-drive.rq)
+Starting Verify mode
+Path: 
+Query file: 
+Output file: ./results/minimal_can-drive_result.json
+Time taken: 3.187245199s
+
+real	0m3.189s
+user	0m0.477s
+sys	0m2.712s
+
+        PROOF GENERATION (DATA: ./minimal/) (QUERY: ./queries/employment-status.rq)
+Starting Prove mode
+Path: ./minimal/
+Query file: ./queries/employment-status.rq
+Output file: ./results/minimal_employment-status_result.json
+Time taken: 1080.554581037s
+
+real	18m0.557s
+user	70m54.841s
+sys	0m3.593s
+
+        VERIFICATION (DATA: ./minimal/) (QUERY: ./queries/employment-status.rq)
+Starting Verify mode
+Path: 
+Query file: 
+Output file: ./results/minimal_employment-status_result.json
+Time taken: 2.131483016s
+
+real	0m2.134s
+user	0m0.351s
+sys	0m1.782s
+
+        PROOF GENERATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./queries/query.rq)
+Starting Prove mode
+Path: ./data/generated/ed25519-preprocessed/
+Query file: ./queries/query.rq
+Output file: ./results/ed25519-preprocessed_query_result.json
+Time taken: 4594.305417694s
+
 real	76m34.308s
 user	301m46.305s
 sys	0m16.782s

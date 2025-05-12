@@ -1,0 +1,92 @@
+{
+  "macos-ci": {
+    "minimal": {
+      "query": {
+        "prove": 1243.46824375,
+        "verify": 3.486624
+      },
+      "can-drive": {
+        "prove": 1526.365170583,
+        "verify": 2.822826167
+      },
+      "employment-status": {
+        "prove": 1030.798369,
+        "verify": 2.392500583
+      }
+    },
+    "ed25519-preprocessed": {
+      "query": {
+        "prove": 1237.526404042,
+        "verify": 8.1051565
+      },
+      "can-drive": {
+        "prove": 4271.484872833,
+        "verify": 6.942120083
+      },
+      "employment-status": {
+        "prove": 3643.95073325,
+        "verify": 7.406768417
+      }
+    }
+  },
+  "ubuntu-ci": {
+    "minimal": {
+      "query": {
+        "prove": 1354.526816209,
+        "verify": 3.212069848
+      },
+      "can-drive": {
+        "prove": 1622.219169204,
+        "verify": 3.187245199
+      },
+      "employment-status": {
+        "prove": 1080.554581037,
+        "verify": 2.131483016
+      }
+    },
+    "ed25519-preprocessed": {
+      "query": {
+        "prove": 4594.305417694,
+        "verify": 9.782836057
+      },
+      "can-drive": {
+        "prove": 4049.858719663,
+        "verify": 8.41977162
+      },
+      "employment-status": {
+        "prove": 3770.120459857,
+        "verify": 7.397730321
+      }
+    }
+  },
+  "macos-local": {
+    "minimal": {
+      "query": {
+        "prove": 460.980345166,
+        "verify": 2.779791875
+      },
+      "can-drive": {
+        "prove": 610.692247708,
+        "verify": 2.870976667
+      },
+      "employment-status": {
+        "prove": 455.208215667,
+        "verify": 1.936910459
+      }
+    },
+    "ed25519-preprocessed": {
+      "query": {
+        "prove": 1820.080167584,
+        "verify": 7.804353
+      },
+      "can-drive": {
+        "prove": 1725.275122125,
+        "verify": 6.769636208
+      },
+      "employment-status": {
+        "prove": 1574.473104833,
+        "verify": 6.539400375
+      }
+    }
+  }
+}
