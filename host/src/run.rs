@@ -80,13 +80,8 @@ fn prove_mode(args: &Args) {
     // Obtain the default prover.
     let prover = default_prover();
 
-    let start = std::time::Instant::now();
-
     // Proof information by proving the specified ELF binary.
     let prove_info = prover.prove(env, SPARQL_ED25519_ELF).unwrap();
-    
-    let end = std::time::Instant::now();
-    // println!("Proving took {:?}", end - start);
     
     // extract the receipt.
     let receipt: Receipt = prove_info.receipt;
@@ -111,7 +106,6 @@ fn prove_mode(args: &Args) {
     // Write the result to the specified JSON file
     let json_file = std::fs::File::create(&args.output_file).unwrap();
     serde_json::to_writer_pretty(json_file, &result_object).unwrap();
-    // println!("Results written to {}", args.output_file);
 }
 
 fn verify_mode(args: &Args) {
@@ -174,11 +168,7 @@ fn verify_mode(args: &Args) {
     );
 
     // Verify the receipt
-    let start = std::time::Instant::now();
     receipt.verify(SPARQL_ED25519_ID).unwrap();
-    let end = std::time::Instant::now();
-    // println!("Verification took {:?}", end - start);
-    // println!("Verification successful!");
 }
 
 pub fn run(args: &Args) {
@@ -188,6 +178,7 @@ pub fn run(args: &Args) {
     }
 }
 
+#[allow(dead_code)]
 fn main() {
     // Initialize tracing. In order to view logs, run `RUST_LOG=info cargo run`
     tracing_subscriber::fmt()

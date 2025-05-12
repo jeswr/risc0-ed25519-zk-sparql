@@ -36,17 +36,20 @@ jobs:
         run: bash ./setup.sh
 
       - name: Run benchmark
-        run: cargo bench --bench '*' -- --verbose
+        run: bash ./run_release.sh
 
-      - name: Combine criterion results
-        run: bash ./combine_criterion.sh
+      # - name: Run benchmark
+      #   run: cargo bench --bench '*' -- --verbose
 
-      - name: Run benchmark action
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          tool: 'cargo'
-          output-file-path: combined_criterion.json
-          gh-pages-branch: gh-pages
-          benchmark-data-dir-path: dev/bench
-          github-token: ${{ github.token }}
-          auto-push: true
+      # - name: Combine criterion results
+      #   run: bash ./combine_criterion.sh
+
+      # - name: Run benchmark action
+      #   uses: benchmark-action/github-action-benchmark@v1
+      #   with:
+      #     tool: 'cargo'
+      #     output-file-path: combined_criterion.json
+      #     gh-pages-branch: gh-pages
+      #     benchmark-data-dir-path: dev/bench
+      #     github-token: ${{ github.token }}
+      #     auto-push: true
