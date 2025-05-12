@@ -1,6 +1,18 @@
 import json
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.colors import rgb2hex
+import colorsys
+
+def darken_color(color, factor=0.7):
+    # Extract RGB components from RGBA tuple
+    r, g, b = color[:3]
+    # Convert RGB to HSV
+    hsv = colorsys.rgb_to_hsv(r, g, b)
+    # Darken the value
+    hsv = (hsv[0], hsv[1], hsv[2] * factor)
+    # Convert back to RGB
+    return colorsys.hsv_to_rgb(*hsv)
 
 # Read the benchmark results
 with open('bench-results/res.json', 'r') as f:
@@ -24,12 +36,22 @@ width = 0.15  # Width of the bars
 
 # Plot prove times
 for i, query in enumerate(queries):
-    for j, config in enumerate(configurations):
-        prove_times = [data[env][config][query]['prove'] for env in environments]
-        config_label = "1 Credential" if config == "minimal" else "4 Credentials"
-        query_label = "SELECT ALL" if query == "query" else query.replace("-", " ").title()
-        ax1.bar(x + (i * width) + (j * width/2), prove_times, width/2,
-                label=f'{config_label} {query_label}')
+    # Plot 4 credentials first (so it's in the background)
+    config = "ed25519-preprocessed"
+    config_label = "4 Credentials"
+    query_label = "SELECT ALL" if query == "query" else query.replace("-", " ").title()
+    prove_times = [data[env][config][query]['prove'] for env in environments]
+    bar = ax1.bar(x + (i * width), prove_times, width,
+            label=f'{config_label} {query_label}', alpha=0.7)
+    color = bar[0].get_facecolor()
+    
+    # Plot 1 credential on top with darker color
+    config = "minimal"
+    config_label = "1 Credential"
+    prove_times = [data[env][config][query]['prove'] for env in environments]
+    ax1.bar(x + (i * width), prove_times, width,
+            label=f'{config_label} {query_label}', alpha=0.9,
+            color=darken_color(color))
 
 ax1.set_ylabel('Time (seconds)')
 ax1.set_title('Proof Generation Times')
@@ -40,12 +62,22 @@ ax1.grid(True, alpha=0.3)
 
 # Plot verify times
 for i, query in enumerate(queries):
-    for j, config in enumerate(configurations):
-        verify_times = [data[env][config][query]['verify'] for env in environments]
-        config_label = "1 Credential" if config == "minimal" else "4 Credentials"
-        query_label = "SELECT ALL" if query == "query" else query.replace("-", " ").title()
-        ax2.bar(x + (i * width) + (j * width/2), verify_times, width/2,
-                label=f'{config_label} {query_label}')
+    # Plot 4 credentials first (so it's in the background)
+    config = "ed25519-preprocessed"
+    config_label = "4 Credentials"
+    query_label = "SELECT ALL" if query == "query" else query.replace("-", " ").title()
+    verify_times = [data[env][config][query]['verify'] for env in environments]
+    bar = ax2.bar(x + (i * width), verify_times, width,
+            label=f'{config_label} {query_label}', alpha=0.7)
+    color = bar[0].get_facecolor()
+    
+    # Plot 1 credential on top with darker color
+    config = "minimal"
+    config_label = "1 Credential"
+    verify_times = [data[env][config][query]['verify'] for env in environments]
+    ax2.bar(x + (i * width), verify_times, width,
+            label=f'{config_label} {query_label}', alpha=0.9,
+            color=darken_color(color))
 
 ax2.set_ylabel('Time (seconds)')
 ax2.set_title('Verification Times')
