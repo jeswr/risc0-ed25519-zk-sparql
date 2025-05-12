@@ -1,0 +1,71 @@
+        PROOF GENERATION (DATA: ./minimal/) (QUERY: ./query.sparql)
+
+real    10m20.845s
+user    64m48.938s
+sys     0m48.952s
+
+        VERIFICATION (DATA: ./minimal/) (QUERY: ./query.sparql)
+
+real    0m4.148s
+user    0m1.001s
+sys     0m2.989s
+
+        PROOF GENERATION (DATA: ./minimal/) (QUERY: ./data/queries/can-drive.rq)
+
+real    9m21.989s
+user    61m1.679s
+sys     0m37.924s
+
+        VERIFICATION (DATA: ./minimal/) (QUERY: ./data/queries/can-drive.rq)
+
+real    0m3.348s
+user    0m0.812s
+sys     0m2.367s
+
+        PROOF GENERATION (DATA: ./minimal/) (QUERY: ./data/queries/employment-status.rq)
+
+real    8m53.053s
+user    58m2.390s
+sys     0m33.947s
+
+        VERIFICATION (DATA: ./minimal/) (QUERY: ./data/queries/employment-status.rq)
+
+real    0m4.303s
+user    0m0.996s
+sys     0m2.939s
+
+        PROOF GENERATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./query.sparql)
+
+real    31m31.627s
+user    195m13.280s
+sys     2m34.085s
+
+        VERIFICATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./query.sparql)
+
+real    0m11.391s
+user    0m2.756s
+sys     0m8.068s
+
+        PROOF GENERATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./data/queries/can-drive.rq)
+
+real    46m11.952s
+user    196m43.642s
+sys     2m14.158s
+
+        VERIFICATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./data/queries/can-drive.rq)
+
+real    0m8.375s
+user    0m2.061s
+sys     0m6.056s
+
+        PROOF GENERATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./data/queries/employment-status.rq)
+
+real    32m10.941s
+user    225m52.214s
+sys     1m24.581s
+
+        VERIFICATION (DATA: ./data/generated/ed25519-preprocessed/) (QUERY: ./data/queries/employment-status.rq)
+
+real    0m14.355s
+user    0m3.595s
+sys     0m10.414s
