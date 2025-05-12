@@ -187,11 +187,11 @@ fn main() {
 
     let args = Args::parse();
 
-    let start = Instant::now();
+    let start = std::time::Instant::now();
     match args.mode {
         Mode::Prove => prove_mode(&args),
         Mode::Verify => verify_mode(&args),
     }
-    let duration = start.elapsed();
-    println!("Time taken: {:?}", duration);
+    let end = std::time::Instant::now();
+    println!("Time taken: {:?}", end - start);
 }
