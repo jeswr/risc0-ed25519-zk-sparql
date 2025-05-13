@@ -1,0 +1,43 @@
+graph TD
+    subgraph Prover Architecture
+        A[Input: Multiple W3C Verifiable Credentials] --> B[Preprocessing]
+        A[Input: Multiple W3C Verifiable Credentials] --> AA[Signature]
+        A[Input: Multiple W3C Verifiable Credentials] --> AB[Public Key]
+        B --> C[Generate transformedDocument]
+        B --> D[Generate canonicalProofConfig]
+        C --> E[ZKVM Input]
+        D --> E
+        AA --> E
+        AB --> E
+        
+        subgraph ZKVM
+            E --> F[Load into Oxigraph Dataset]
+            F --> G[Execute SPARQL Query]
+            G --> H[Output: Query Results, Public Keys, Query String]
+        end
+        
+        ZKVM --> II[Execution Proof]
+        H --> I[Proof Object]
+        H --> IJ[SPARQL Results]
+        II --> I
+        I --> J[Final Query Response with Proof]
+        IJ --> J
+    end
+
+    subgraph Verifier Architecture
+        K[Input: Query Response with Proof] --> L[Extract Proof Object]
+        L --> M[Decode Journal]
+        M --> N[Reconstruct ZKVM Output]
+        N --> O[Verify Public Keys Match]
+        N --> P[Verify SPARQL Results Match]
+        N --> Q[Verify Query Strings Match]
+        L --> R[Verify ZKVM Proof]
+        O --> S[Final Verification Result: boolean]
+        P --> S
+        Q --> S
+        R --> S
+    end
+
+    style ZKVM fill:#f9f,stroke:#333,stroke-width:2px
+    style H fill:#bbf,stroke:#333,stroke-width:2px
+    style R fill:#fbb,stroke:#333,stroke-width:2px
