@@ -8,7 +8,7 @@ fi
 
 # Generate SVG from Mermaid diagram
 echo "Generating SVG from Mermaid diagram..."
-mmdc -i architecture.mmd -o architecture.svg
+mmdc -i architecture.mmd -o architecture.svg -b white
 
 # Check if generation was successful
 if [ $? -eq 0 ]; then
