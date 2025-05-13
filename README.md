@@ -1,4 +1,4 @@
-# useserde::;RISC0 ED25519 ZK SPARQL
+# RISC0 ED25519 ZK SPARQL
 
 A zero knowledge proof library for verifying the correctness of SPARQL queries over verifiable credentials. This library enables confidential querying of credentials signed with ED25519 signatures, allowing the generation of proofs that a query was executed correctly without revealing the underlying data.
 

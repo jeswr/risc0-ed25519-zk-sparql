@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes,arrows,fit,backgrounds}
+
+\begin{document}
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    box/.style={draw, minimum width=2.5cm, minimum height=1cm},
+    subgraph/.style={draw, rounded corners, inner sep=0.5cm},
+    prover/.style={fill=white},
+    zkvm/.style={fill=pink!30},
+    output/.style={fill=blue!20},
+    verify/.style={fill=red!20}
+]
+
+% Prover Architecture
+\node[subgraph, prover, label=above:Prover Architecture] (prover) {
+    \begin{tikzpicture}[node distance=1cm]
+        % Input nodes
+        \node[box] (input) {Input: Multiple W3C Verifiable Credentials};
+        \node[box, below=of input] (preprocess) {Preprocessing};
+        \node[box, right=of input] (signature) {Signature};
+        \node[box, right=of signature] (pubkey) {Public Key};
+        
+        % ZKVM subgraph
+        \node[subgraph, zkvm, below=of preprocess, label=above:ZKVM] (zkvm) {
+            \begin{tikzpicture}[node distance=1cm]
+                \node[box] (load) {Load into Oxigraph Dataset};
+                \node[box, below=of load] (query) {Execute SPARQL Query};
+                \node[box, below=of query] (output) {Output: Query Results, Public Keys, Query String};
+            \end{tikzpicture}
+        };
+        
+        % Proof nodes
+        \node[box, below=of zkvm] (proof) {Proof Object};
+        \node[box, right=of proof] (results) {SPARQL Results};
+        \node[box, below=of proof] (final) {Final Query Response with Proof};
+        
+        % Connections
+        \draw[->] (input) -- (preprocess);
+        \draw[->] (input) -- (signature);
+        \draw[->] (input) -- (pubkey);
+        \draw[->] (preprocess) -- (zkvm);
+        \draw[->] (signature) -- (zkvm);
+        \draw[->] (pubkey) -- (zkvm);
+        \draw[->] (zkvm) -- (proof);
+        \draw[->] (zkvm) -- (results);
+        \draw[->] (proof) -- (final);
+        \draw[->] (results) -- (final);
+    \end{tikzpicture}
+};
+
+% Verifier Architecture
+\node[subgraph, prover, right=4cm of prover, label=above:Verifier Architecture] (verifier) {
+    \begin{tikzpicture}[node distance=1cm]
+        \node[box] (input) {Input: Query Response with Proof};
+        \node[box, below=of input] (extract) {Extract Proof Object};
+        \node[box, below=of extract] (decode) {Decode Journal};
+        \node[box, below=of decode] (reconstruct) {Reconstruct ZKVM Output};
+        
+        % Verification nodes
+        \node[box, verify, right=of reconstruct] (verify) {Verify ZKVM Proof};
+        \node[box, below=of reconstruct] (match1) {Verify Public Keys Match};
+        \node[box, below=of match1] (match2) {Verify SPARQL Results Match};
+        \node[box, below=of match2] (match3) {Verify Query Strings Match};
+        \node[box, below=of match3] (final) {Final Verification Result: boolean};
+        
+        % Connections
+        \draw[->] (input) -- (extract);
+        \draw[->] (extract) -- (decode);
+        \draw[->] (decode) -- (reconstruct);
+        \draw[->] (extract) -- (verify);
+        \draw[->] (reconstruct) -- (match1);
+        \draw[->] (reconstruct) -- (match2);
+        \draw[->] (reconstruct) -- (match3);
+        \draw[->] (match1) -- (final);
+        \draw[->] (match2) -- (final);
+        \draw[->] (match3) -- (final);
+        \draw[->] (verify) -- (final);
+    \end{tikzpicture}
+};
+
+\end{tikzpicture}
+\end{document} 
