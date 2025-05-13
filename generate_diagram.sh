@@ -10,10 +10,14 @@ fi
 echo "Generating SVG from Mermaid diagram..."
 mmdc -i architecture.mmd -o architecture.svg -b white
 
+# Generate PDF from Mermaid diagram
+echo "Generating PDF from Mermaid diagram..."
+mmdc -i architecture.mmd -o architecture.pdf -b white
+
 # Check if generation was successful
 if [ $? -eq 0 ]; then
-    echo "SVG generated successfully at architecture.svg"
+    echo "Diagrams generated successfully at architecture.svg and architecture.pdf"
 else
-    echo "Error generating SVG"
+    echo "Error generating diagrams"
     exit 1
 fi 
