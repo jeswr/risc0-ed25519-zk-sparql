@@ -40,13 +40,13 @@ for i, query in enumerate(queries):
     config = "ed25519-preprocessed"
     config_label = "4 Credentials"
     query_label = "SELECT ALL" if query == "query" else "Can Drive" if query == "can-drive" else "Employment"
-    prove_times = [data[env][config][query]['prove'] for env in environments]
-    bar = ax1.bar(x + (i * width * 1.2), prove_times, width,
+    prove_times_4 = [data[env][config][query]['prove'] for env in environments]
+    bar = ax1.bar(x + (i * width * 1.2), prove_times_4, width,
             label=f'{config_label} {query_label}', alpha=0.7)
     color = bar[0].get_facecolor()
     
     # Add text labels for 4 credentials
-    for j, v in enumerate(prove_times):
+    for j, v in enumerate(prove_times_4):
         ax1.text(x[j] + (i * width * 1.2), v/2, query_label,
                 ha='center', va='center', color='white', rotation=90,
                 fontweight='bold', fontsize=16)
@@ -54,10 +54,21 @@ for i, query in enumerate(queries):
     # Plot 1 credential on top with darker color
     config = "minimal"
     config_label = "1 Credential"
-    prove_times = [data[env][config][query]['prove'] for env in environments]
-    ax1.bar(x + (i * width * 1.2), prove_times, width,
+    prove_times_1 = [data[env][config][query]['prove'] for env in environments]
+    ax1.bar(x + (i * width * 1.2), prove_times_1, width,
             label=f'{config_label} {query_label}', alpha=0.9,
             color=darken_color(color))
+    
+    # Add percentage labels above 4-credential bars
+    for j, (time_1, time_4) in enumerate(zip(prove_times_1, prove_times_4)):
+        percentage = (time_1 / time_4) * 100
+        ax1.text(x[j] + (i * width * 1.2), time_4 + 50, f'{percentage:.1f}%',
+                ha='center', va='bottom', fontsize=10)
+
+# Add explanation text for prove times next to legend
+ax1.text(0.82, 0.98, 'Percentages show what portion of the 4-credential time\nthe 1-credential query takes',
+         transform=ax1.transAxes, fontsize=10, verticalalignment='top', horizontalalignment='right',
+         bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
 
 ax1.set_ylabel('Time (seconds)')
 ax1.set_title('Proof Generation Times')
@@ -72,13 +83,13 @@ for i, query in enumerate(queries):
     config = "ed25519-preprocessed"
     config_label = "4 Credentials"
     query_label = "SELECT ALL" if query == "query" else "Can Drive" if query == "can-drive" else "Employment"
-    verify_times = [data[env][config][query]['verify'] for env in environments]
-    bar = ax2.bar(x + (i * width * 1.2), verify_times, width,
+    verify_times_4 = [data[env][config][query]['verify'] for env in environments]
+    bar = ax2.bar(x + (i * width * 1.2), verify_times_4, width,
             label=f'{config_label} {query_label}', alpha=0.7)
     color = bar[0].get_facecolor()
     
     # Add text labels for 4 credentials
-    for j, v in enumerate(verify_times):
+    for j, v in enumerate(verify_times_4):
         ax2.text(x[j] + (i * width * 1.2), v/2, query_label,
                 ha='center', va='center', color='white', rotation=90,
                 fontweight='bold', fontsize=16)
@@ -86,16 +97,22 @@ for i, query in enumerate(queries):
     # Plot 1 credential on top with darker color
     config = "minimal"
     config_label = "1 Credential"
-    verify_times = [data[env][config][query]['verify'] for env in environments]
-    ax2.bar(x + (i * width * 1.2), verify_times, width,
+    verify_times_1 = [data[env][config][query]['verify'] for env in environments]
+    ax2.bar(x + (i * width * 1.2), verify_times_1, width,
             label=f'{config_label} {query_label}', alpha=0.9,
             color=darken_color(color))
+    
+    # Add percentage labels above 4-credential bars
+    for j, (time_1, time_4) in enumerate(zip(verify_times_1, verify_times_4)):
+        percentage = (time_1 / time_4) * 100
+        ax2.text(x[j] + (i * width * 1.2), time_4 + 0.1, f'{percentage:.1f}%',
+                ha='center', va='bottom', fontsize=10)
+
 
 ax2.set_ylabel('Time (seconds)')
 ax2.set_title('Verification Times')
 ax2.set_xticks(x + width * 1.2)  # Adjusted tick positions
 ax2.set_xticklabels([env.replace("-", " ").replace("Ci", "CI").title() for env in environments])
-ax2.legend(loc='upper right')
 ax2.grid(True, alpha=0.3)
 
 # Adjust layout and save
