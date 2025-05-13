@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{graphicx}
+
+\begin{document}
+
+\begin{table}[h]
+\centering
+\caption{Benchmark Results (times in seconds)}
+\label{tab:benchmarks}
+\begin{tabular}{lccccc}
+\toprule
+Environment & Configuration & \multicolumn{2}{c}{Query} & \multicolumn{2}{c}{Can Drive} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+& & Prove & Verify & Prove & Verify \\
+\midrule
+\multirow{2}{*}{macos-ci} & minimal & 1243.47 & 3.49 & 1526.37 & 2.82 \\
+& ed25519-preprocessed & 4237.53 & 8.11 & 4271.48 & 6.94 \\
+\midrule
+\multirow{2}{*}{ubuntu-ci} & minimal & 1354.53 & 3.21 & 1622.22 & 3.19 \\
+& ed25519-preprocessed & 4594.31 & 9.78 & 4049.86 & 8.42 \\
+\midrule
+\multirow{2}{*}{macos-local} & minimal & 460.98 & 2.78 & 610.69 & 2.87 \\
+& ed25519-preprocessed & 1820.08 & 7.80 & 1725.28 & 6.77 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Employment Status Benchmark Results (times in seconds)}
+\label{tab:employment_benchmarks}
+\begin{tabular}{lcc}
+\toprule
+Environment & Configuration & \multicolumn{2}{c}{Employment Status} \\
+\cmidrule(lr){3-4}
+& & Prove & Verify \\
+\midrule
+\multirow{2}{*}{macos-ci} & minimal & 1030.80 & 2.39 \\
+& ed25519-preprocessed & 3643.95 & 7.41 \\
+\midrule
+\multirow{2}{*}{ubuntu-ci} & minimal & 1080.55 & 2.13 \\
+& ed25519-preprocessed & 3770.12 & 7.40 \\
+\midrule
+\multirow{2}{*}{macos-local} & minimal & 455.21 & 1.94 \\
+& ed25519-preprocessed & 1574.47 & 6.54 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document} 

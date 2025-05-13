@@ -14,6 +14,9 @@ mmdc -i architecture.mmd -o architecture.svg -b white
 echo "Generating PDF from Mermaid diagram..."
 mmdc -i architecture.mmd -o architecture.pdf -b white
 
+echo "Generating PNG from Mermaid diagram..."
+mmdc -i architecture.mmd -o architecture.png -b white -w 3000
+
 # Check if generation was successful
 if [ $? -eq 0 ]; then
     echo "Diagrams generated successfully at architecture.svg and architecture.pdf"
