@@ -31,4 +31,7 @@ pip install -r requirements.txt
 echo "Generating benchmark plots..."
 python plot_benchmarks.py
 
+echo "Generating query sizes plot..."
+python plot_sizes.py
+
 echo "Done! Check bench-results/benchmark_results.svg for the generated plot." 

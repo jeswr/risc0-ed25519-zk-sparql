@@ -52,7 +52,7 @@ struct Proof {
     journal: String,
 }
 
-fn prove_mode(args: &Args) {
+fn  prove_mode(args: &Args) {
     let path = args.path.as_ref().expect("path is required in prove mode");
     let query_file = args.query_file.as_ref().expect("query_file is required in prove mode");
     
