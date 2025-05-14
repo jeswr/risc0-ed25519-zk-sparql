@@ -14,7 +14,7 @@ fn main() {
 
     // TODO: Make this query configurable
     let query_string: String = env::read();
-    let query_object = Query::parse(&query_string, None).unwrap();
+    let query_object = Query::parse(&query_string, None).expect("Failed to parse query");
 
     // write public output to the journal
     env::commit(&Output {
@@ -48,11 +48,11 @@ pub fn ed25519_verify(verify: VerifyInput) -> Result<(), String> {
     // Signature verification takes approx. 200 seconds
     // TODO: See if there is a way of doing less type castings to make this
     // run faster
-    VerifyingKey::from_bytes(&public_key_bytes[2..].try_into().unwrap())
-        .unwrap()
+    VerifyingKey::from_bytes(&public_key_bytes[2..].try_into().expect("Failed to convert public key bytes to array"))
+        .expect("Failed to convert public key bytes to array")
         .verify(
             &message_bytes,
-            &Signature::from_bytes(&signature_bytes.try_into().unwrap()),
+            &Signature::from_bytes(&signature_bytes.try_into().expect("Failed to convert signature bytes to array")),
         )
         .map_err(|_| "Signature verification failed")?;
 
@@ -121,5 +121,5 @@ pub fn load_dataset(verify_inputs: Vec<VerifyInput>) -> (Vec<String>, Dataset) {
         ed25519_verify(input).expect("Signature verification failed");
     }
 
-    (pub_keys, dataset)
+    return (pub_keys, dataset)
 }

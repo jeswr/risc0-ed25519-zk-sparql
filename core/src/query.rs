@@ -13,7 +13,7 @@ pub fn query(dataset: Dataset, query: Query) -> String {
         let mut writer = Vec::new();
 
         let mut res = serializer
-            .serialize_solutions_to_writer(&mut writer, solutions.variables().to_vec()).unwrap();
+            .serialize_solutions_to_writer(&mut writer, solutions.variables().to_vec()).expect("Failed to serialize solutions");
 
         for solution in solutions {
             if let Ok(solution) = solution {

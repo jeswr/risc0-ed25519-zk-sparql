@@ -19,19 +19,19 @@ pub enum Mode {
 #[command(author, version, about, long_about = None)]
 pub struct Args {
     /// Operation mode (prove or verify)
-    #[arg(short, long, value_enum)]
+    #[arg(short, long, value_enum, default_value = "Prove")]
     pub mode: Mode,
 
     /// Path to the output JSON file
-    #[arg(short, long)]
+    #[arg(short, long, default_value = "result.temp.json")]
     pub output_file: String,
 
     /// Path to the preprocessed directory
-    #[arg(short, long, requires_if("mode", "Prove"))]
+    #[arg(short, long, requires_if("mode", "Prove"), default_value = "data/generated/ed25519-preprocessed")]
     pub path: Option<String>,
 
     /// Path to the SPARQL query file
-    #[arg(short, long, requires_if("mode", "Prove"))]
+    #[arg(short, long, requires_if("mode", "Prove"), default_value = "queries/query.rq")]
     pub query_file: Option<String>,
 }
 
@@ -85,7 +85,7 @@ fn  prove_mode(args: &Args) {
 
     // Proof information by proving the specified ELF binary.
     let prove_info = prover.prove(env, SPARQL_ED25519_ELF).unwrap();
-    
+
     // extract the receipt.
     let receipt: Receipt = prove_info.receipt;
 
@@ -139,14 +139,14 @@ fn verify_mode(args: &Args) {
 
     if o2.pub_keys.len() != output.pub_keys.len() { 
         panic!("Public keys do not match");
-    }
+    };
 
     for i in 0..o2.pub_keys.len() {
         // Slice because the original output starts with the extra 'z'
         if o2.pub_keys[i] != output.pub_keys[i][1..].to_string() {
             panic!("Public keys do not match: {} {}", o2.pub_keys[i], output.pub_keys[i]);
         }
-    }
+    };
 
     if o2.result_string != output.result_string {
         // Convert both strings to JSON objects for deep equality check
