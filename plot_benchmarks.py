@@ -30,6 +30,12 @@ environments = ['macos-ci', 'ubuntu-ci', 'macos-local']
 configurations = ['minimal', 'ed25519-preprocessed']
 queries = ['query', 'can-drive', 'employment-status']
 
+rename_environments = {
+    'macos-ci': 'macOS CI',
+    'ubuntu-ci': 'Ubuntu CI',
+    'macos-local': 'macOS Local'
+}
+
 # Set up the x-axis positions
 x = np.arange(len(environments))
 width = 0.2  # Increased width of the bars
@@ -73,7 +79,7 @@ ax1.text(0.82, 0.98, 'Percentages show what portion of the 4-credential time\nth
 ax1.set_ylabel('Time (seconds)')
 ax1.set_title('Proof Generation Times')
 ax1.set_xticks(x + width * 1.2)  # Adjusted tick positions
-ax1.set_xticklabels([env.replace("-", " ").replace("Ci", "CI").title() for env in environments])
+ax1.set_xticklabels([rename_environments[env] for env in environments])
 ax1.legend(loc='upper right')
 ax1.grid(True, alpha=0.3)
 
@@ -112,7 +118,7 @@ for i, query in enumerate(queries):
 ax2.set_ylabel('Time (seconds)')
 ax2.set_title('Verification Times')
 ax2.set_xticks(x + width * 1.2)  # Adjusted tick positions
-ax2.set_xticklabels([env.replace("-", " ").replace("Ci", "CI").title() for env in environments])
+ax2.set_xticklabels([rename_environments[env] for env in environments])
 ax2.grid(True, alpha=0.3)
 
 # Adjust layout and save
