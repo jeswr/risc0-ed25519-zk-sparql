@@ -1,0 +1,26 @@
+graph TD
+    A[Input: Multiple W3C Verifiable Credentials] --> B[Preprocessing]
+    A[Input: Multiple W3C Verifiable Credentials] --> AA[Signature]
+    A[Input: Multiple W3C Verifiable Credentials] --> AB[Public Key]
+    B --> C[Generate transformedDocument]
+    B --> D[Generate canonicalProofConfig]
+    C --> E[ZKVM Input]
+    D --> E
+    AA --> E
+    AB --> E
+    
+    subgraph ZKVM
+        E --> F[Load into Oxigraph Dataset]
+        F --> G[Execute SPARQL Query]
+        G --> H[Output: Query Results, Public Keys, Query String]
+    end
+    
+    ZKVM --> II[Execution Proof]
+    H --> I[Proof Object]
+    H --> IJ[SPARQL Results]
+    II --> I
+    I --> J[Final Query Response with Proof]
+    IJ --> J
+
+    style ZKVM fill:#f9f,stroke:#333,stroke-width:2px
+    style H fill:#bbf,stroke:#333,stroke-width:2px
