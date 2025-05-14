@@ -1,0 +1,383 @@
+{
+  "head": {
+    "vars": [
+      "s",
+      "p",
+      "o"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {
+        "o": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#Iso18013DriversLicenseCredential"
+        },
+        "p": {
+          "type": "uri",
+          "value": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "s": {
+          "type": "uri",
+          "value": "urn:uuid:9f756655-18ea-4fab-a435-7441d6330478"
+        }
+      },
+      {
+        "o": {
+          "type": "uri",
+          "value": "https://www.w3.org/2018/credentials#VerifiableCredential"
+        },
+        "p": {
+          "type": "uri",
+          "value": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "s": {
+          "type": "uri",
+          "value": "urn:uuid:9f756655-18ea-4fab-a435-7441d6330478"
+        }
+      },
+      {
+        "o": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "type": "literal",
+          "value": "2028-12-03T12:19:52Z"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://www.w3.org/2018/credentials#validUntil"
+        },
+        "s": {
+          "type": "uri",
+          "value": "urn:uuid:9f756655-18ea-4fab-a435-7441d6330478"
+        }
+      },
+      {
+        "o": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "type": "literal",
+          "value": "2023-12-03T12:19:52Z"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://www.w3.org/2018/credentials#validFrom"
+        },
+        "s": {
+          "type": "uri",
+          "value": "urn:uuid:9f756655-18ea-4fab-a435-7441d6330478"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "A license granting driving privileges in Utopia."
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://schema.org/description"
+        },
+        "s": {
+          "type": "uri",
+          "value": "urn:uuid:9f756655-18ea-4fab-a435-7441d6330478"
+        }
+      },
+      {
+        "o": {
+          "type": "uri",
+          "value": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUg...kSuQmCC"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://schema.org/image"
+        },
+        "s": {
+          "type": "uri",
+          "value": "urn:uuid:9f756655-18ea-4fab-a435-7441d6330478"
+        }
+      },
+      {
+        "o": {
+          "type": "uri",
+          "value": "did:example:4e89e3b5-0010-4bb2-b1ea-81bb125b03a9"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://www.w3.org/2018/credentials#credentialSubject"
+        },
+        "s": {
+          "type": "uri",
+          "value": "urn:uuid:9f756655-18ea-4fab-a435-7441d6330478"
+        }
+      },
+      {
+        "o": {
+          "type": "uri",
+          "value": "did:example:bob"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://www.w3.org/2018/credentials#issuer"
+        },
+        "s": {
+          "type": "uri",
+          "value": "urn:uuid:9f756655-18ea-4fab-a435-7441d6330478"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "Utopia Driver's License"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://schema.org/name"
+        },
+        "s": {
+          "type": "uri",
+          "value": "urn:uuid:9f756655-18ea-4fab-a435-7441d6330478"
+        }
+      },
+      {
+        "o": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#LicensedDriver"
+        },
+        "p": {
+          "type": "uri",
+          "value": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "s": {
+          "type": "uri",
+          "value": "did:example:4e89e3b5-0010-4bb2-b1ea-81bb125b03a9"
+        }
+      },
+      {
+        "o": {
+          "type": "bnode",
+          "value": "0"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#license"
+        },
+        "s": {
+          "type": "uri",
+          "value": "did:example:4e89e3b5-0010-4bb2-b1ea-81bb125b03a9"
+        }
+      },
+      {
+        "o": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#Iso18013DriversLicense"
+        },
+        "p": {
+          "type": "uri",
+          "value": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "JOHN"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#givenName"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#unsignedInt",
+          "type": "literal",
+          "value": "2"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#sex"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "type": "literal",
+          "value": "2028-08-27T12:00:00-06:00"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#expiryDate"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "1ST"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl/aamva#akaSuffix"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "UTA"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#unDistinguishingSign"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "542426814"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#documentNumber"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "UA"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#issuingCountry"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON",
+          "type": "literal",
+          "value": "[{\"codes\":[{\"code\":\"D\"}],\"expiry_date\":\"2027-01-01\",\"issue_date\":\"2019-01-01\",\"vehicle_category_code\":\"D\"},{\"codes\":[{\"code\":\"C\"}],\"expiry_date\":\"2017-01-01\",\"issue_date\":\"2019-01-01\",\"vehicle_category_code\":\"C\"}]"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#drivingPrivileges"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "DOE"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#familyName"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "N"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl/aamva#givenNameTruncation"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "UADMV"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#issuingAuthority"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "type": "literal",
+          "value": "N"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl/aamva#familyNameTruncation"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "type": "literal",
+          "value": "2023-01-15T10:00:00-07:00"
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#issueDate"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      },
+      {
+        "o": {
+          "type": "uri",
+          "value": "data:image/jpeg;base64,/9j/4AAQSkZJR...RSClooooP/2Q=="
+        },
+        "p": {
+          "type": "uri",
+          "value": "https://w3id.org/vdl#portrait"
+        },
+        "s": {
+          "type": "bnode",
+          "value": "0"
+        }
+      }
+    ]
+  }
+}

@@ -1,25 +1,50 @@
 {
+  "4-credentials": {
     "query_sizes_with_proof": {
-        "query": {
-            "size_bytes": 16335963
-        },
-        "can_drive": {
-            "size_bytes": 14167667
-        },
-        "employment_status": {
-            "size_bytes": 12452097
-        }
-        
+      "query": {
+        "size_bytes": 16335963
+      },
+      "can_drive": {
+        "size_bytes": 14167667
+      },
+      "employment_status": {
+        "size_bytes": 12452097
+      }
     },
     "query_sizes_no_proof": {
-        "query": {
-            "size_bytes": 27971
-        },
-        "can_drive": {
-            "size_bytes": 446
-        },
-        "employment_status": {
-            "size_bytes": 456
-        } 
+      "query": {
+        "size_bytes": 27971
+      },
+      "can_drive": {
+        "size_bytes": 446
+      },
+      "employment_status": {
+        "size_bytes": 456
+      }
     }
+  },
+  "1-credentials": {
+    "query_sizes_with_proof": {
+      "query": {
+        "size_bytes": 5432624
+      },
+      "can_drive": {
+        "size_bytes": 5384561
+      },
+      "employment_status": {
+        "size_bytes": 3592288
+      }
+    },
+    "query_sizes_no_proof": {
+      "query": {
+        "size_bytes": 9021
+      },
+      "can_drive": {
+        "size_bytes": 127
+      },
+      "employment_status": {
+        "size_bytes": 132
+      }
+    }
+  }
 }

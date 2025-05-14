@@ -1,0 +1,12 @@
+{
+  "head": {
+    "vars": [
+      "person",
+      "givenName",
+      "familyName"
+    ]
+  },
+  "results": {
+    "bindings": []
+  }
+}
