@@ -48,6 +48,14 @@ cargo build --release
 ./target/release/host --mode verify --output-file ./sparql_result.json
 ```
 
+### Running the benchmark
+
+To run the benchmark run
+
+```
+bash run_release.sh
+```
+
 ### Development Mode
 
 For faster iteration during development:
