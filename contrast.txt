@@ -1,42 +1,79 @@
+As a performance comparison, we evaluate these dataset and queries on Oxigraph outside of the RISC0 ZKVM environment.
+On the MacOS local machine we found that the time to load and execute the query was between 0.1 - 0.2s for all datasets
+and queries. This means that 
+
+
+ 0.1-2s for all minimal queries
+and 
+
+For those implementations of the interface in which 
+
+
 Processing ./minimal/ for Oxigraph preprocessing...
 Loading data into Oxigraph
-
-real    0m0.164s
-user    0m0.058s
-sys     0m0.020s
+Processing ./minimal/ for Oxigraph preprocessing...
+Loading data into Oxigraph
+Running warmup for: Oxigraph load for ./minimal/
+Warmup run 1/3
+Warmup run 2/3
+Warmup run 3/3
+Running 100 trials for: Oxigraph load for ./minimal/
+Trial 100/100
+Average time for Oxigraph load for ./minimal/: .144181 seconds (over 100 trials)
 Running ./queries/query.rq on ./minimal/
-
-real    0m0.027s
-user    0m0.007s
-sys     0m0.008s
+Running warmup for: Oxigraph query ./queries/query.rq on ./minimal/
+Warmup run 1/3
+Warmup run 2/3
+Warmup run 3/3
+Running 100 trials for: Oxigraph query ./queries/query.rq on ./minimal/
+Trial 100/100
+Average time for Oxigraph query ./queries/query.rq on ./minimal/: .032637 seconds (over 100 trials)
 Running ./queries/can-drive.rq on ./minimal/
-
-real    0m0.022s
-user    0m0.007s
-sys     0m0.008s
+Running warmup for: Oxigraph query ./queries/can-drive.rq on ./minimal/
+Warmup run 1/3
+Warmup run 2/3
+Warmup run 3/3
+Running 100 trials for: Oxigraph query ./queries/can-drive.rq on ./minimal/
+Trial 100/100
+Average time for Oxigraph query ./queries/can-drive.rq on ./minimal/: .025213 seconds (over 100 trials)
 Running ./queries/employment-status.rq on ./minimal/
-
-real    0m0.021s
-user    0m0.006s
-sys     0m0.007s
+Running warmup for: Oxigraph query ./queries/employment-status.rq on ./minimal/
+Warmup run 1/3
+Warmup run 2/3
+Warmup run 3/3
+Running 100 trials for: Oxigraph query ./queries/employment-status.rq on ./minimal/
+Trial 100/100
+Average time for Oxigraph query ./queries/employment-status.rq on ./minimal/: .025642 seconds (over 100 trials)
 Processing ./data/generated/ed25519-preprocessed/ for Oxigraph preprocessing...
 Loading data into Oxigraph
-
-real    0m0.118s
-user    0m0.047s
-sys     0m0.016s
+Running warmup for: Oxigraph load for ./data/generated/ed25519-preprocessed/
+Warmup run 1/3
+Warmup run 2/3
+Warmup run 3/3
+Running 100 trials for: Oxigraph load for ./data/generated/ed25519-preprocessed/
+Trial 100/100
+Average time for Oxigraph load for ./data/generated/ed25519-preprocessed/: .144586 seconds (over 100 trials)
 Running ./queries/query.rq on ./data/generated/ed25519-preprocessed/
-
-real    0m0.023s
-user    0m0.006s
-sys     0m0.007s
+Running warmup for: Oxigraph query ./queries/query.rq on ./data/generated/ed25519-preprocessed/
+Warmup run 1/3
+Warmup run 2/3
+Warmup run 3/3
+Running 100 trials for: Oxigraph query ./queries/query.rq on ./data/generated/ed25519-preprocessed/
+Trial 100/100
+Average time for Oxigraph query ./queries/query.rq on ./data/generated/ed25519-preprocessed/: .034275 seconds (over 100 trials)
 Running ./queries/can-drive.rq on ./data/generated/ed25519-preprocessed/
-
-real    0m0.021s
-user    0m0.007s
-sys     0m0.008s
+Running warmup for: Oxigraph query ./queries/can-drive.rq on ./data/generated/ed25519-preprocessed/
+Warmup run 1/3
+Warmup run 2/3
+Warmup run 3/3
+Running 100 trials for: Oxigraph query ./queries/can-drive.rq on ./data/generated/ed25519-preprocessed/
+Trial 100/100
+Average time for Oxigraph query ./queries/can-drive.rq on ./data/generated/ed25519-preprocessed/: .081180 seconds (over 100 trials)
 Running ./queries/employment-status.rq on ./data/generated/ed25519-preprocessed/
-
-real    0m0.020s
-user    0m0.006s
-sys     0m0.007s
+Running warmup for: Oxigraph query ./queries/employment-status.rq on ./data/generated/ed25519-preprocessed/
+Warmup run 1/3
+Warmup run 2/3
+Warmup run 3/3
+Running 100 trials for: Oxigraph query ./queries/employment-status.rq on ./data/generated/ed25519-preprocessed/
+Trial 100/100
+Average time for Oxigraph query ./queries/employment-status.rq on ./data/generated/ed25519-preprocessed/: .026029 seconds (over 100 trials)

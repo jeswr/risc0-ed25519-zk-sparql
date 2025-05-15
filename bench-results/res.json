@@ -88,5 +88,29 @@
         "verify": 6.539400375
       }
     }
+  },
+  "oxigraph_local": {
+    "minimal": {
+      "query": {
+        "prove": 0.191
+      },
+      "can-drive": {
+        "prove": 0.186
+      },
+      "employment-status": {
+        "prove": 0.185
+      }
+    },
+    "ed25519-preprocessed": {
+      "query": {
+        "prove": 0.141
+      },
+      "can-drive": {
+        "prove": 0.139
+      },
+      "employment-status": {
+        "prove": 0.138
+      }
+    }
   }
 }

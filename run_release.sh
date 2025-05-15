@@ -1,5 +1,37 @@
 #!/bin/bash
 
+# Function to run a command with warmup and multiple trials
+run_with_timing() {
+    local cmd="$1"
+    local desc="$2"
+    local trials=100
+    local warmup_runs=3
+    
+    echo "Running warmup for: $desc"
+    # Perform warmup runs
+    for ((i=1; i<=warmup_runs; i++)); do
+        echo "Warmup run $i/$warmup_runs"
+        eval "$cmd" > /dev/null 2>&1
+    done
+    
+    echo "Running $trials trials for: $desc"
+    # Perform timed trials
+    local total_time=0
+    for ((i=1; i<=trials; i++)); do
+        echo -ne "Trial $i/$trials\r"
+        local start_time=$(date +%s.%N)
+        eval "$cmd" > /dev/null 2>&1
+        local end_time=$(date +%s.%N)
+        local elapsed=$(echo "$end_time - $start_time" | bc)
+        total_time=$(echo "$total_time + $elapsed" | bc)
+    done
+    echo ""  # New line after progress indicator
+    
+    # Calculate and print average
+    local avg_time=$(echo "scale=6; $total_time / $trials" | bc)
+    echo "Average time for $desc: $avg_time seconds (over $trials trials)"
+}
+
 # Install Oxigraph if not available in current environment
 if ! command -v oxigraph &> /dev/null; then
     echo "Oxigraph could not be found in current environment"
@@ -28,13 +60,12 @@ do
     rm -rf .oxigraph
 
     echo "Loading data into Oxigraph"
-    time (oxigraph load --location .oxigraph --file "$output_file" --format nq)
-
+    run_with_timing "oxigraph load --location .oxigraph --file \"$output_file\" --format nq" "Oxigraph load for $dir"
 
     for query in ./queries/query.rq ./queries/can-drive.rq ./queries/employment-status.rq
     do
         echo "Running $query on $dir"
-        time (oxigraph query --location .oxigraph --query-file "$query" --results-file oxires.json --results-format application/sparql-results+json)
+        run_with_timing "oxigraph query --location .oxigraph --query-file \"$query\" --results-file oxires.json --results-format application/sparql-results+json" "Oxigraph query $query on $dir"
     done
 
     rm "$output_file"
