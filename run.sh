@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Starting proof generation..."
-time (RISC0_DEV_MODE=1 cargo run --quiet -- -p ./data/generated/ed25519-preprocessed/ --mode prove --output-file ./sparql_result.json)
+time (RISC0_DEV_MODE=1 cargo run --quiet -- --path ./data/generated/ed25519-preprocessed/ --mode prove --output-file ./sparql_result.json)
 echo "Proof generation complete."
 
 echo "Starting verification..."

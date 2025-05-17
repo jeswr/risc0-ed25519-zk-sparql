@@ -579,12 +579,10 @@ dependencies = [
 name = "ed25519-verify"
 version = "0.1.0"
 dependencies = [
- "bs58",
  "core",
  "crypto-bigint",
  "ed25519-dalek",
  "risc0-zkvm",
- "serde",
  "sha2 0.10.8",
 ]
 

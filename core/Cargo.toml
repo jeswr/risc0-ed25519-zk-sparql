@@ -14,8 +14,3 @@ oxttl = { version = "0.1.7" }
 spareval = { version = "0.1.0" }
 spargebra = { version = "0.3.4" }
 sparesults = { version = "0.2.4" }
-
-[patch.crates-io]
-sha2 = { git = "https://github.com/risc0/RustCrypto-hashes", tag = "sha2-v0.10.8-risczero.0" }
-ed25519-dalek = { git = "https://github.com/risc0/curve25519-dalek", tag = "curve25519-4.1.2-risczero.0" }
-crypto-bigint = { git = "https://github.com/risc0/RustCrypto-crypto-bigint", tag = "v0.5.5-risczero.0" }

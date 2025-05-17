@@ -27,3 +27,7 @@ pub fn query(dataset: Dataset, query: Query) -> String {
         String::new()
     }
 }
+
+pub fn parse_query(query_string: &str) -> Query {
+    Query::parse(&query_string, None).expect("Failed to parse query")
+}

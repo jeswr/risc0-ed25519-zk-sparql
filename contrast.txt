@@ -1,7 +1,7 @@
 As a performance comparison, we evaluate these dataset and queries on Oxigraph outside of the RISC0 ZKVM environment.
-On the MacOS local machine we found that the time to load and execute the query was between 0.1 - 0.2s for all datasets
-and queries. This means that 
-
+On the MacOS local machine we found that the time to load and execute the query was between 0.15 - 0.25s for all datasets
+and queries. Specifically for the 1-credential dataset, the SELECT ALL, Can Drive and Employment queries took 0.18s, 0.17s and 0.17s respectively;
+and on the 4-credential dataset, the queries took 0.18, 0.23s and 0.17s respectively.
 
  0.1-2s for all minimal queries
 and 
