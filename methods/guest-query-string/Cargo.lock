@@ -576,17 +576,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "ed25519-verify"
-version = "0.1.0"
-dependencies = [
- "core",
- "crypto-bigint",
- "ed25519-dalek",
- "risc0-zkvm",
- "sha2 0.10.8",
-]
-
-[[package]]
 name = "educe"
 version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1052,6 +1041,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "02b3e5e68a3a1a02aad3ec490a98007cbc13c37cbe84a3cd7b8e406d76e7f778"
 dependencies = [
  "unicode-ident",
+]
+
+[[package]]
+name = "query-string"
+version = "0.1.0"
+dependencies = [
+ "core",
+ "crypto-bigint",
+ "risc0-zkvm",
 ]
 
 [[package]]

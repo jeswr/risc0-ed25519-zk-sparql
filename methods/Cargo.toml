@@ -7,4 +7,4 @@ edition = "2021"
 risc0-build = { version = "^2.1.0" }
 
 [package.metadata.risc0]
-methods = ["guest", "guest-ed25519-verify"]
+methods = ["guest", "guest-empty", "guest-query-string", "guest-query-object", "guest-ed25519-verify"]

@@ -1,4 +1,4 @@
-use crate::run::{Args, Mode, run};
+use crate::run::{run, Args, Mode, QueryMode};
 use std::path::PathBuf;
 
 fn root_dir() -> PathBuf {
@@ -10,6 +10,7 @@ fn args(mode: Mode, query_file: &str) -> Args {
     let workspace_root = root_dir();
     Args {
       mode: mode,
+      query_mode: QueryMode::String,
       path: Some(workspace_root.join("data/generated/ed25519-preprocessed/").to_string_lossy().to_string()),
       query_file: Some(workspace_root.join(query_file).to_string_lossy().to_string()),
       output_file: workspace_root.join("sparql_result.json").to_string_lossy().to_string(),
