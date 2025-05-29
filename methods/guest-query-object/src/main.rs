@@ -1,4 +1,3 @@
-use core::query::parse_query;
 use risc0_zkvm::guest::env;
 use spargebra::Query;
 

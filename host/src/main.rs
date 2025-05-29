@@ -14,6 +14,7 @@ fn main() {
             output_file: "result.temp.json".to_string(),
             path: Some("data/generated/ed25519-preprocessed".to_string()),
             query_file: Some("queries/query.rq".to_string()),
+            proofs_path: Some("cached-proofs".to_string()),
         });
     } else {
         let args = Args::parse();

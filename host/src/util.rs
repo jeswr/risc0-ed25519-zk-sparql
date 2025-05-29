@@ -14,6 +14,7 @@ fn args(mode: Mode, query_file: &str) -> Args {
       path: Some(workspace_root.join("data/generated/ed25519-preprocessed/").to_string_lossy().to_string()),
       query_file: Some(workspace_root.join(query_file).to_string_lossy().to_string()),
       output_file: workspace_root.join("sparql_result.json").to_string_lossy().to_string(),
+      proofs_path: Some(workspace_root.join("cached-proofs").to_string_lossy().to_string()),
   }
 }
 

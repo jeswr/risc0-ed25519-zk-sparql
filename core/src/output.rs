@@ -6,3 +6,10 @@ pub struct Output {
     pub pub_keys: Vec<String>,
     pub query_string: String,
 }
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+pub struct HashedOutput {
+    pub result_string: String,
+    pub pub_keys: Vec<String>,
+    pub query_hash: u64,
+}
